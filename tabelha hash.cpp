@@ -1,6 +1,13 @@
+//------------------------Tabela Hash----------------------------------
+
+/*estrutura de dados, com calculo de conflito, utilizando lista ligada*/
+
+
+
 #include <stdio.h>
 #include <stdlib.h>
 
+//struct com lista ligada 
 typedef struct node {
     int valor;
     int chave;
@@ -9,6 +16,7 @@ typedef struct node {
 
 oi no[10];
 
+//inicia tabela 
 void inicializa() {
     int i;
     for (i = 0; i < 10; i++) {
@@ -18,10 +26,17 @@ void inicializa() {
     }
 }
 
+/*
+Tipo "unsigned para garantir que retornará valor positivo
+Faz calculo para achar posição na tabela
+*/
 unsigned int hash(int chave){
     return chave % 10;
 }
 
+/*
+Função que calcula a posição para inserir
+*/
 void insere(int chave, int valor) {
     int b = hash(chave);
     if (no[b].chave == -1) {
@@ -36,7 +51,9 @@ void insere(int chave, int valor) {
     }
 }
 
-void exibe() {
+
+//Print
+/*void exibe() {
     int i;
     oi *temp;
     for (i = 0; i < 10; i++) {
@@ -52,7 +69,9 @@ void exibe() {
         printf("\n");
     }
 }
+*/
 
+//Busca elemento
 int busca(int chave, int valor){
     int b = hash(chave);
     int index = b;
@@ -77,6 +96,8 @@ int busca(int chave, int valor){
     return -1;
 }
 
+
+//imprime na tela 
 void imprime() {
     int i;
     for (i = 0; i < 10; i++) {
